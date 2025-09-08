@@ -29,12 +29,10 @@ Route::get('/posts', function () {
 //parameter kedua dari get() merupakan callback function yang akan dijalankan ketikan kita mengakses urlnya di parameter pertama
 // /posts/{slug}, {slug}nya disebute wilecard, sama seperti dynamic route di react router contoh seperti /posts/:slug
 // parameter di function callbacknya itu menangkap slug dari url
-Route::get('/posts/{slug}', function ($slug) {
-
-
+Route::get('/posts/{post:slug}', function (Post $post) {
 
 //     first itu mencari element pertama di dalam array berdasarkan kriteria yang kita mau cari, miri seperti find() kalau di javaScript
-     $post = Post::find($slug);
+//     $post = Post::find($post);
 
      return view('post', ['title' => 'Single Post','post' => $post]);
 
