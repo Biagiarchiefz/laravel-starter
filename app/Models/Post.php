@@ -1,10 +1,27 @@
 <?php
-
 //ini untuk memberitau laravelnya kalau Post berada di folder App Models
 namespace App\Models;
-use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model {
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class Post extends Model
+{
+    use HasFactory;
+
+    // Method ini digunakan agar kita dimudahkan mengakses data ke database yang ada relasi tabel Usernya
+    // kita punya data Post kita ingin menampilkan title dari post tersebut berarti cara aksesnya, $post -> title
+    // nahh kalau misalkan kita ingin juga akses data post authornya siapa, nah dengan method ini kita bisa melakukan hal tersebut
+    // caranya dengann $post->namaFucntionya->name(name dari tabel users)
+    // brrti $post->author->name
+    public function author(): BelongsTo {
+        return $this->belongsTo(User::class);
+    }
+
+    public function category(): BelongsTo {
+        return $this->belongsTo(Category::class);
+    }
 
 
 }
@@ -52,3 +69,4 @@ class Post extends Model {
 //
 //
 //}
+

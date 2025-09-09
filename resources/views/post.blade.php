@@ -8,7 +8,7 @@
         <h2 class="text-3xl font-bold">{{ $post['title'] }}</h2>
 
         <div class="mt-5 text-base text-gray-500">
-            <a href="#">{{ $post['author'] }}</a> | {{ $post -> created_at}}
+            <a href="#">{{ $post->author->name }}</a> | {{ $post -> created_at ->  diffForHumans()}}
         </div>
         <p class="my-3">{{$post['body']}}</p>
         <a href="/posts" class="text-blue-500 hover:underline font-medium">&laquo; Back to</a>

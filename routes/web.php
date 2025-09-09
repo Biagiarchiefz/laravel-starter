@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 //panggil class Post yang ada di folder App Models yang sudah kita daftarkan dari Folder App Models
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Category;
 
 
 
@@ -37,6 +39,20 @@ Route::get('/posts/{post:slug}', function (Post $post) {
      return view('post', ['title' => 'Single Post','post' => $post]);
 
 });
+
+
+Route::get('/author/{user}', function (User $user) {
+    return view('posts', ['title' => 'Articles by ' . $user->name ,'posts' => $user->posts]);
+
+});
+
+
+Route::get('/category/{category}', function (Category $category) {
+    return view('posts', ['title' => 'Category ' . $category->name_category ,'posts' => $category->category]);
+
+});
+
+
 
 
 Route::get('/contact', function () {
